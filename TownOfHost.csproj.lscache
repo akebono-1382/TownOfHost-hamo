@@ -1,0 +1,1126 @@
+version=2.2
+
+# This file caches language service data to improve the performance of C# Dev Kit.
+# It is not intended for manual editing. It can safely be deleted and will be
+# regenerated automatically. For more information, see https://aka.ms/lscache
+#
+# To control where cache files are stored, use the following VS Code setting:
+#   "dotnet.projectsystem.cacheInProjectFolder": true
+
+[project]
+project=TownOfHost.csproj
+language=C#
+primary
+lastDtbSucceeded
+
+[properties]
+AssemblyName=TownOfHost-hamo
+BaseIntermediateOutputPath=obj/
+BaseOutputPath=bin/
+MaxSupportedLangVersion=10.0
+OutputType=Library
+ProjectAssetsFile=<PATH>obj/project.assets.json
+RootNamespace=TownOfHost
+TargetFramework=net6.0
+TargetFrameworkIdentifier=.NETCoreApp
+TargetFrameworkVersion=v6.0
+TargetPath=<PATH>bin/Release/net6.0/TownOfHost-hamo.dll
+TargetRefPath=<PATH>obj/Release/net6.0/ref/TownOfHost-hamo.dll
+TemporaryDependencyNodeTargetIdentifier=net6.0
+
+[commandLineArguments]
+/noconfig
+/unsafe-
+/checked-
+/nowarn:MSB3246,CS0162,CS0169,CS0184,CS0649,CS0414,GI001,1701,1702,8002
+/fullpaths
+/nostdlib+
+/errorreport:prompt
+/warn:6
+/define:TRACE;RELEASE;NET;NET6_0;NETCOREAPP;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NETCOREAPP1_0_OR_GREATER;NETCOREAPP1_1_OR_GREATER;NETCOREAPP2_0_OR_GREATER;NETCOREAPP2_1_OR_GREATER;NETCOREAPP2_2_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER
+/highentropyva+
+/debug-
+/debug:portable
+/filealign:512
+/optimize+
+/out:obj/Release/net6.0/TownOfHost-hamo.dll
+/refout:obj/Release/net6.0/refint/TownOfHost-hamo.dll
+/target:library
+/warnaserror-
+/utf8output
+/deterministic+
+/langversion:preview
+/warnaserror+:NU1605
+
+[sourceFiles]
+Attributes/
+ GameModuleInitializerAttribute.cs
+ InitializerAttribute.cs
+ PluginModuleInitializerAttribute.cs
+Helpers/
+ ColorHelper.cs
+ CustomRolesHelper.cs
+ EnumHelper.cs
+ IEnumeratorHelper.cs
+ JsonHelper.cs
+ ObjectHelper.cs
+ StringHelper.cs
+Modules/
+ Achievement/
+  Achievements.cs
+  AchievementSaver.cs
+  CheckGetNAchievement.cs
+  NomalAchievement.cs
+ ClientOptions/
+  ClientActionItem.cs
+  ClientOptionItem.cs
+  ModUnloaderScreen.cs
+  SoundSettingsScreen.cs
+ CustomSpawn/
+  CustomSpawnDeserializer.cs
+  CustomSpawnEditor.cs
+  CustomSpawnManager.cs
+ ExtendedPlayerControl/
+  ExtendedPlayerControl.cs
+  ExtendedRpc.cs
+ Extensions/IGameManagerEx.cs
+ GameMode/
+  DummyBattleRoyale.cs
+  DummyHunter.cs
+  GameModeManager.cs
+  Kedoro.cs
+  MurderMystery.cs
+  SuddenDeathMode.cs
+  TaskBattle.cs
+ GameOptionsSender/
+  GameOptionsSender.cs
+  NormalGameOptionsSender.cs
+  PlayerGameOptionsSender.cs
+ LogHandler/
+  ILogHandler.cs
+  LogHandler.cs
+ MessageManager/
+  ICustomWriter.cs
+  WriterProxy.cs
+ OptionBackup/
+  OptionBackupData.cs
+  OptionBackupValue.cs
+ OptionItem/
+  AssignOptionItem.cs
+  BooleanOptionItem.cs
+  FilterOptionItem.cs
+  FloatOptionItem.cs
+  IntegerOptionItem.cs
+  ObjectOptionitem.cs
+  OptionItem.cs
+  PresetOptionItem.cs
+  StringOptionItem.cs
+  ValueRule.cs
+ Random/
+  HashRandomWrapper.cs
+  IRandom.cs
+  MersenneTwister.cs
+  NetRandomWrapper.cs
+  Xorshift.cs
+ Streamer/
+  ChatData.cs
+  Readcomment.cs
+  StreamerHopeMenu.cs
+  StreamerMenu.cs
+ Utils/
+  Utils.cs
+  UtilsLoad.cs
+  UtilsLog.cs
+  UtilsName.cs
+  UtilsNotifyRoles.cs
+  UtilsOption.cs
+  UtilsRoleInfo.cs
+  UtilsRoletext.cs
+  UtilsTask.cs
+ AdminProvider.cs
+ AntiBlackout.cs
+ AURoleOptions.cs
+ AutoRehost.cs
+ BanManager.cs
+ Base62.cs
+ Blacklist.cs
+ BugReportSystem.cs
+ Camouflague.cs
+ ChatBubbleShower.cs
+ ChatManager.cs
+ ClientOptionsManager.cs
+ CoCommandOption.cs
+ Croissant.cs
+ Customnetobject.cs
+ CustomRpcSender.cs
+ CustomWinnerHolder.cs
+ Debugger.cs
+ DebugModeManager.cs
+ DisableDevice.cs
+ DiscordRichPresenceService.cs
+ DoorsReset.cs
+ DoubleTrigger.cs
+ ErrorText.cs
+ Fakedeadbodyplacer.cs
+ GameState.cs
+ GuessManager.cs
+ HashAuth.cs
+ HealthLog.cs
+ InfectedTracker.cs
+ InvisiblePatch.cs
+ InvisibleRPC.cs.cs
+ LastGameSave.cs
+ LateTask.cs
+ LobbyBGM.cs
+ LobbyChatRelay.cs
+ LocalPresetReceiver.cs
+ Mainthreaddispatcher.cs
+ MatchmakingWordManager.cs
+ MeetingTimeManager.cs
+ MeetingVoteManager.cs
+ Moderator.cs
+ ModeSwitchManager.cs
+ ModUpdater.cs
+ MonkeyBehaviorBanOption.cs
+ NameColorManager.cs
+ OptionHolder.cs
+ OptionLazyLoader.cs
+ OptionRoles.cs
+ OptionSaver.cs
+ OptionSerializer.cs
+ OptionShower.cs
+ PlayerCatch.cs
+ PlayerOutfitManager.cs
+ Presetshareclient.cs
+ Presetsharemenu.cs
+ RoleInfoShower.cs
+ RoomStatusTextSaver.cs
+ RoomTaskAssign.cs
+ RPC.cs
+ SaruWarningOption.cs
+ SelfVoteManager.cs
+ SlotRoleAssing.cs
+ Special.cs
+ StandardIntro.cs
+ Statistics.cs
+ StatisticsRecord.cs
+ SurveySystem.cs
+ SystemEnvironment.cs
+ TargetArrow.cs
+ TemplateManager.cs
+ TestBotManager.cs
+ TimedAutoRehost.cs
+ Tooltip.cs
+ Translator.cs
+ VanillaOptionHolder.cs
+ VentManager.cs
+ VersionChecker.cs
+ VersionInfoManager.cs
+ WatchdogLauncher.cs
+ Win32FileDialog.cs
+ Yomiage.cs
+ Zoom.cs
+obj/Release/net6.0/
+ .NETCoreApp,Version=v6.0.AssemblyAttributes.cs
+ TownOfHost.AssemblyInfo.cs
+Patches/
+ GameEndPredicate/
+  GameEndPredicate.cs
+  HideAndSeekGameEndPredicate.cs
+  NormalGameEndPredicate.cs
+ GameOptions/
+  ChangeTab.cs
+  ChangeValue.cs
+  MenuPatch.cs
+  NumericOptionInput.cs
+  PresetPatch.cs
+  ShowFilter.cs
+  ShowRandomSpawnMenu.cs
+  SwitchGamemode.cs
+  Update.cs
+ ISystemType/
+  DoorsSystemTypePatch.cs
+  HeliSabotageSystemPatch.cs
+  HqHudSystemTypePatch.cs
+  HudOverrideSystemTypePatch.cs
+  LifeSuppSystemTypePatch.cs
+  MushroomMixupSabotageSystemPatch.cs
+  ReactorSystemTypePatch.cs
+  SabotageSystemTypePatch.cs
+  SecurityCameraSystemTypePatch.cs
+  SwitchSystemPatch.cs
+  VentilationSystemPatch.cs
+ PlayerContorols/
+  CompleteTaskPatch.cs
+  FixedUpatePatch.cs
+  MurderPatch.cs
+  PlayerContorolPatch.cs
+  ReportDeadBodyPatch.cs
+  RoleAbilityPatch.cs
+  ZipLinePatch.cs
+ ActionButtonPatch.cs
+ AirShipElectricalDoors.cs
+ AirshipStatus.cs
+ AutoRehostPatch.cs
+ AutoReturnToRoomPatch.cs
+ AutoStartWhenTimerLowPatch.cs
+ BugChatPanelPatch.cs
+ BugReportHudButtonPatch.cs
+ BugReportUIPatch.cs
+ ChatBubblePatch.cs
+ ChatCommandPatch.cs
+ ChatControlPatch.cs
+ CheckGameEndPatch.cs
+ ClientOptionsPatch.cs
+ ClientPatch.cs
+ CoFindGameInfoPatch.cs
+ ConsecutiveJoinKickPatch.cs
+ ConstantsPatch.cs
+ ControlPatch.cs
+ CredentialsPatch.cs
+ CustomMapPatch.cs
+ DisconnectPatch.cs
+ DiscordActivityPatch.cs
+ EnterCodeManagerPatch.cs
+ ExilePatch.cs
+ FindAGameManagerPatch.cs
+ GameManagerPatch.cs
+ GameStartManagerPatch.cs
+ GMAutoChat.cs
+ GMAutoPossess.cs
+ GMSkipAirshipSpawnMinigame.cs
+ HadouHoPatch.cs.cs
+ HashRandomPatch.cs
+ HauntMenuMinigamePatch.cs
+ HideBanButtonPatch.cs
+ HudPatch.cs
+ IntroPatch.cs
+ JoinGameButtonPatch.cs
+ LadderPatch.cs
+ LoadingBarManagerPatch.cs
+ LobbyInfoPanePatch.cs
+ MainManuNewsPatchs.cs
+ MainMenuManagerPatch.cs
+ MakePublicDiscordPatch.cs
+ MeetingHudPatch.cs
+ ModeMenuBackNavigationPatch.cs
+ ModeSwitchGuardPatch.cs
+ ModStampPatch.cs
+ MovingPlatformBehaviourPatch.cs
+ NetworkedPlayrInfoPatch.cs
+ NoBlackoutPatch.cs
+ OneWayShadowsPatch.cs
+ onGameStartedPatch.cs
+ OutroPatch.cs
+ PeriodicAutoRehostPatch.cs
+ PeriodicDataResetPatch.cs
+ Petactionpatch.cs
+ PlayerJoinAndLeftPatch.cs
+ PlayerSkinPatch.cs
+ RandomSpawnPatch.cs
+ RecomputeTaskPatch.cs
+ RoleGuideButtonPatch.cs
+ RoleGuideDisableAndChatFixPatch.cs
+ SchrodingerPatch.cs
+ ShipStatusPatch.cs
+ SoundManagerPatch.cs
+ TaskAdderPatch.cs
+ TaskAssignPatch.cs
+ TestPatch LobbyTitleDummy.cs
+ TestPatch LobbyWallWalkDebug.cs
+ TestPatch PetShapeshiftAssignPatch.cs
+ TestPatch RandomSukinOnDeathPatch.cs
+ UsablesPatch.cs
+Properties/Resources.Designer.cs
+Roles/
+ AddOns/
+  Assin/
+   AddOnsAssignData.cs
+   AddOnsAssignDataOnlyKiller.cs
+   AddOnsAssignDateTeamImp.cs
+   AmanojakuAssign.cs
+  Common/
+   Buff/
+    Absorb.cs
+    Autopsy.cs
+    Connecting.cs
+    Damudo.cs
+    Guarding.cs
+    Guesser.cs
+    Jumbo.cs
+    Lighting.cs
+    MagicHand.cs
+    Management.cs
+    Moon.cs
+    Opener.cs
+    PlusVote.cs
+    Powerful.cs
+    Revenger.cs
+    Seeing.cs
+    Serial.cs
+    Speeding.cs
+    Stack.cs
+    Tiebreaker.cs
+    VoteTracker.cs
+    Watching.cs
+   DeBuff/
+    Amnesia.cs
+    Clumsy.cs
+    Elector.cs
+    InfoPoor.cs
+    News.cs
+    NonReport.cs
+    Notvoter.cs
+    Reporting.cs
+    Sealer.cs
+    Securer.cs
+    SilverBuzzer.cs
+    Slacker.cs
+    Stamina.cs
+    Sunglasses.cs
+    Surrender.cs
+    Transparent.cs
+    Water.cs
+  Crewmate/
+   Amanojaku.cs
+   Chain.cs
+   Inheritance.cs
+   LastCrewmate.cs
+   Symbol.cs
+   Triplets.cs
+   Twins.cs
+   Workhorse.cs
+  Impostor/
+   LastImpostor.cs
+   OneWolf.cs
+   SlowStarter.cs
+  Neutral/
+   ColorLovers.cs
+   Faction.cs
+   kenzoku.cs
+   LastNeutral.cs
+   Lovers.cs
+  Addoninfo.cs
+  RoleAddAddons.cs
+ Core/
+  Descriptions/
+   RoleDescription.cs
+   SingleRoleDescription.cs
+   VanillaRoleDescription.cs
+  Interfaces/
+   IAdditionalWinner.cs
+   IDeathReasonSeeable.cs
+   IDoubleTrigger.cs
+   IImpostor.cs
+   IKiller.cs
+   IKillFlashSeeable.cs
+   IMeetingTimeAlterable.cs
+   INekomata.cs
+   IRoomTaker.cs
+   ISchrodingerCatOwner.cs
+   ISelfVoter.cs
+   ISidekickable.cs
+   ISystemTypeUpdateHook.cs
+   IUsePhantomButton.cs
+   LNKiller.cs
+  CustomRoleManager.cs
+  RoleBase.cs
+  SimpleRoleInfo.cs
+ Crewmate/
+  AllArounder.cs
+  AmateurTeller.cs
+  Analyzer.cs
+  Android.cs
+  Apprentice.cs
+  Arcana.cs
+  Astel.cs
+  AstelStar.cs
+  Bait.cs
+  Bakery.cs
+  Balancer.cs
+  BoostLighter.cs
+  Cakeshop.cs
+  CandleLighter.cs
+  Comebacker.cs
+  Corexis.cs
+  Dictator.cs
+  Doctor.cs
+  Efficient.cs
+  Express.cs
+  Fanatic.cs
+  Fortuner.cs
+  FortuneTeller.cs
+  Gasp.cs
+  Guardian.cs
+  GuardMaster.cs
+  Hitchhiker.cs
+  InSender.cs
+  Inspector.cs
+  Jailer.cs
+  Jizo.cs
+  King.cs
+  LegendStar.cs
+  Lighter.cs
+  MagicalGirl.cs
+  Mayor.cs
+  Medium.cs
+  MeetingSheriff.cs
+  Merlin.cs
+  Milkman.cs
+  Moving.cs
+  NiceAddoer.cs
+  NiceEraser.cs
+  NiceGuesser.cs
+  NiceLinker.cs
+  NiceLogger.cs
+  NiceNekomata.cs
+  NiceredridingHood.cs
+  NiceTeleporter.cs
+  Nicetrapper.cs
+  NiceWorkaholic.cs
+  Nimrod.cs
+  Observer.cs
+  Police.cs
+  PonkotuTeller.cs
+  President.cs
+  Psychic.cs
+  Pukupuku.cs
+  Rabbit.cs
+  Repeater.cs
+  Resulter.cs
+  Reversal.cs
+  SabotageMaster.cs
+  Sage.cs
+  Santa.cs
+  Satellite.cs
+  SatsumatoImo.cs
+  Seer.cs
+  Sheriff.cs
+  SheriffHadouHo.cs
+  ShrineMaiden.cs
+  Snitch.cs
+  Snowman.cs
+  SpeedBooster.cs
+  Staff.cs
+  Stolener.cs
+  SuspiciousTeller.cs
+  SwitchSheriff.cs
+  Taskstar.cs
+  Test StepDancer.cs
+  TimeManager.cs
+  ToiletFan.cs
+  Tomorrow.cs
+  Trapper.cs
+  Typewriter.cs
+  UltraStar.cs
+  VentBeginner.cs
+  VentHunter.cs
+  VentMaster.cs
+  VentOpener.cs
+  VillageChief.cs
+  Walker.cs
+  Walkure.cs
+  WhiteHacker.cs
+  WolfBoy.cs
+ Ghost/
+  Role/
+   AsistingAngel.cs
+   DemonicCrusher.cs
+   DemonicSupporter.cs
+   DemonicTracker.cs
+   DemonicVenter.cs
+   Ghostbuttoner.cs
+   GhostFloodlight.cs
+   GhostNoiseSender.cs
+   GhostReseter.cs
+   GhostRumour.cs
+   GhostSaboteur.cs
+   GuardianAngel.cs
+  GhostRoleAssign.cs
+  GhostRoleCore.cs
+ Impostor/
+  Abuser.cs
+  Alien.cs
+  AlienHijack.cs
+  Amnesiac.cs
+  AntiReporter.cs
+  Archer.cs
+  Assassin.cs
+  Ballooner.cs
+  BeginnerImpostor.cs
+  BlackVisioner.cs
+  Bomber.cs
+  BorderKiller.cs
+  BountyHunter.cs
+  Camouflager.cs
+  CharismaStar.cs
+  Chaser.cs
+  Conjurer.cs
+  ConnectSaver.cs
+  Curser.cs
+  Decrescendo.cs
+  DoubleKiller.cs
+  Driver.cs
+  DummyHunterPlayer.cs
+  EarnestWolf.cs
+  Eraser.cs
+  EvilAddoer.cs
+  EvilBlender.cs
+  EvilCommander.cs
+  Evilgambler.cs
+  EvilGuesser.cs
+  EvilHacker.cs
+  EvilLinker.cs
+  EvilMaker.cs
+  EvilMoving.cs
+  EvilSanta.cs
+  EvilSatellite.cs
+  EvilStandMaster.cs
+  EvilTeller.cs
+  EvilTracker.cs
+  EvilTrapper.cs
+  Evolver.cs
+  FireWorks.cs
+  HadouHo.cs
+  HateKiller.cs
+  Infect.cs
+  Insider.cs
+  Jumper.cs
+  Limiter.cs
+  Maestro.cs
+  Mafia.cs
+  Magician.cs
+  Mare.cs
+  MassMueder.cs
+  Minimalist.cs
+  Mole.cs
+  NekoKabocha.cs
+  Notifier.cs
+  Penguin.cs
+  ProBowler.cs
+  Professional.cs
+  ProgressKiller.cs
+  Puppeteer.cs
+  PuppeteerHadouHo.cs
+  QuickKiller.cs
+  Reloader.cs
+  Rocket.cs
+  Samurai.cs
+  SelfBomber.cs
+  SerialKiller.cs
+  ShapeKiller.cs
+  ShapeMaster.cs
+  SmokeMaker.cs
+  Sniper.cs
+  Spider.cs
+  Stealth.cs
+  Surrogate.cs
+  Swooper.cs
+  Tairou.cs
+  Teleporter.cs
+  TeleportKiller.cs
+  Test DummySpawner.cs
+  Test Reverser.cs
+  TimeSleeper.cs
+  TimeThief.cs
+  UnFortuner.cs
+  Vampire.cs
+  VampireBloodStain.cs
+  VillainWolf.cs
+  Warlock.cs
+  Whiteshark.cs
+  Witch.cs
+ Madmate/
+  BlackCat.cs
+  BlackMadMate.cs
+  BlackSanta.cs
+  Braid.cs
+  Infected.cs
+  MadAvenger.cs
+  MadBait.cs
+  MadBetrayer.cs
+  MadChanger.cs
+  MadCount.cs
+  MadGuardian.cs
+  MadHacker.cs
+  MadJester.cs
+  MadKaiser.cs
+  Madmate.cs
+  MadParasite.cs
+  MadProxy.cs
+  Madpsycho.cs
+  MadReduced.cs
+  MadScream.cs
+  MadSheriff.cs
+  MadSnitch.cs
+  MadSuicide.cs
+  MadTeller.cs
+  MadTracker.cs
+  MadWare.cs
+  MadWorker.cs
+  Nue.cs
+ Neutral/
+  Altair.cs
+  Amateras.cs
+  AntiHero.cs
+  Arsonist.cs
+  Autocrat.cs
+  BakeCat.cs
+  Banker.cs
+  BatGirl.cs
+  Chatter.cs
+  Chef.cs
+  Connector.cs
+  Countkiller.cs
+  Cupid.cs
+  CurseMaker.cs
+  Dancer.cs
+  DarkSheriff.cs
+  DoppelGanger.cs
+  Dracula.cs
+  Duelist.cs
+  Eater.cs
+  Egoist.cs
+  Emptiness.cs
+  Executioner.cs
+  FakeJester.cs
+  Fool.cs
+  Fox.cs
+  Freeter.cs
+  God.cs
+  GrimReaper.cs
+  HappyJester.cs
+  HathorSekhmet.cs
+  Hunter.cs
+  Jackal.cs
+  JackalAlien.cs
+  JackalDoll.cs
+  JackalHadouHo.cs
+  JackalMafia.cs
+  JackalWolf.cs
+  Jester.cs
+  Lawyer.cs
+  LoversBreaker.cs
+  Madonna.cs
+  MassMedia.cs
+  Mermaid.cs
+  Missioneer.cs
+  Monika.cs
+  Monochromer.cs
+  Muter.cs
+  Nautilus.cs
+  Null.cs
+  Ogre.cs
+  Onmyoji.cs
+  Opportunist.cs
+  PavlovDog.cs
+  PhantomThief.cs
+  Pharaoh.cs
+  Pirate.cs
+  PlagueDoctor.cs
+  PokerFace.cs
+  RaccoonChild.cs
+  RaccoonParent.cs
+  Remotekiller.cs
+  Ruler.cs
+  SantaClaus.cs
+  SchrodingerCat.cs
+  Scratcher.cs
+  Shyboy.cs
+  Sleeper.cs
+  Spelunker.cs
+  StandMaster.cs
+  Strawdoll.cs
+  Suicider.cs
+  Terrorist.cs
+  TheThreeLittlePigs.cs
+  Tuna.cs
+  Turncoat.cs
+  Vega.cs
+  Ventoman.cs
+  Victim.cs
+  Villain.cs
+  Vulture.cs
+  Workaholic.cs
+  Zombie.cs
+ Other/MMArcher.cs
+ Vanilla/
+  Crewmate.cs
+  Detective.cs
+  Engineer.cs
+  Impostor.cs
+  Judge.cs
+  Noisemaker.cs
+  Phantom.cs
+  Scientist.cs
+  Shapeshifter.cs
+  Tracker.cs
+  Viper.cs
+ RoleAssignManager.cs
+Templates/
+ SimpleButton.cs
+ SimpleTextBox.cs
+ TMPTemplate.cs
+main.cs
+
+[frameworkPacks]
+Microsoft.NETCore.App.Ref
+
+[metadataReferences]
+../../../../../Program Files (x86)/Steam/steamapps/common/Among Us/BepInEx/
+ core/
+  0Harmony.dll
+  AsmResolver.dll
+  AsmResolver.DotNet.dll
+  AsmResolver.PE.dll
+  AsmResolver.PE.File.dll
+  AssetRipper.CIL.dll
+  AssetRipper.Primitives.dll
+  BepInEx.Core.dll
+  BepInEx.Preloader.Core.dll
+  BepInEx.Unity.Common.dll
+  BepInEx.Unity.IL2CPP.dll
+  Cpp2IL.Core.dll
+  Disarm.dll
+  Gee.External.Capstone.dll
+  Iced.dll
+  Il2CppInterop.Common.dll
+  Il2CppInterop.Generator.dll
+  Il2CppInterop.HarmonySupport.dll
+  Il2CppInterop.Runtime.dll
+  LibCpp2IL.dll
+  Mono.Cecil.dll
+  Mono.Cecil.Mdb.dll
+  Mono.Cecil.Pdb.dll
+  Mono.Cecil.Rocks.dll
+  MonoMod.RuntimeDetour.dll
+  MonoMod.Utils.dll
+  SemanticVersioning.dll
+  StableNameDotNet.dll
+  WasmDisassembler.dll
+ interop/
+  AddressablesPlayAssetDelivery.dll
+  AmongUsCaching.dll
+  Assembly-CSharp-firstpass.dll
+  Assembly-CSharp.dll
+  CsvHelper.dll
+  Hazel.dll
+  Il2CppMono.Security.dll
+  Il2Cppmscorlib.dll
+  Il2CppSystem.Configuration.dll
+  Il2CppSystem.Core.dll
+  Il2CppSystem.Data.dll
+  Il2CppSystem.dll
+  Il2CppSystem.Drawing.dll
+  Il2CppSystem.Net.Http.dll
+  Il2CppSystem.Numerics.dll
+  Il2CppSystem.Runtime.Serialization.dll
+  Il2CppSystem.Xml.dll
+  Il2CppSystem.Xml.Linq.dll
+  io.sentry.unity.runtime.dll
+  QRCoder.dll
+  Rewired_Core.dll
+  Rewired_Windows.dll
+  Rewired_Windows_Functions.dll
+  Sentry.dll
+  Sentry.Microsoft.Bcl.AsyncInterfaces.dll
+  Sentry.System.Buffers.dll
+  Sentry.System.Collections.Immutable.dll
+  Sentry.System.Memory.dll
+  Sentry.System.Numerics.Vectors.dll
+  Sentry.System.Reflection.Metadata.dll
+  Sentry.System.Runtime.CompilerServices.Unsafe.dll
+  Sentry.System.Text.Encodings.Web.dll
+  Sentry.System.Text.Json.dll
+  Sentry.System.Threading.Tasks.Extensions.dll
+  Sentry.Unity.dll
+  Unity.Addressables.dll
+  Unity.LevelPlay.dll
+  Unity.ProBuilder.dll
+  Unity.ResourceManager.dll
+  Unity.Services.Core.Configuration.dll
+  Unity.Services.Core.Device.dll
+  Unity.Services.Core.dll
+  Unity.Services.Core.Environments.Internal.dll
+  Unity.Services.Core.Internal.dll
+  Unity.Services.Core.Registration.dll
+  Unity.Services.Core.Scheduler.dll
+  Unity.Services.Core.Telemetry.dll
+  Unity.Services.Core.Threading.dll
+  Unity.TextMeshPro.dll
+  UnityEngine.AccessibilityModule.dll
+  UnityEngine.AIModule.dll
+  UnityEngine.AndroidJNIModule.dll
+  UnityEngine.AnimationModule.dll
+  UnityEngine.AssetBundleModule.dll
+  UnityEngine.AudioModule.dll
+  UnityEngine.ClothModule.dll
+  UnityEngine.ClusterInputModule.dll
+  UnityEngine.ClusterRendererModule.dll
+  UnityEngine.ContentLoadModule.dll
+  UnityEngine.CoreModule.dll
+  UnityEngine.CrashReportingModule.dll
+  UnityEngine.DirectorModule.dll
+  UnityEngine.dll
+  UnityEngine.DSPGraphModule.dll
+  UnityEngine.GameCenterModule.dll
+  UnityEngine.GIModule.dll
+  UnityEngine.GridModule.dll
+  UnityEngine.HotReloadModule.dll
+  UnityEngine.ImageConversionModule.dll
+  UnityEngine.IMGUIModule.dll
+  UnityEngine.InputLegacyModule.dll
+  UnityEngine.InputModule.dll
+  UnityEngine.JSONSerializeModule.dll
+  UnityEngine.LocalizationModule.dll
+  UnityEngine.ParticleSystemModule.dll
+  UnityEngine.PerformanceReportingModule.dll
+  UnityEngine.Physics2DModule.dll
+  UnityEngine.PhysicsModule.dll
+  UnityEngine.ProfilerModule.dll
+  UnityEngine.PropertiesModule.dll
+  UnityEngine.Purchasing.dll
+  UnityEngine.Purchasing.SecurityCore.dll
+  UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll
+  UnityEngine.ScreenCaptureModule.dll
+  UnityEngine.SharedInternalsModule.dll
+  UnityEngine.SpriteMaskModule.dll
+  UnityEngine.SpriteShapeModule.dll
+  UnityEngine.StreamingModule.dll
+  UnityEngine.SubstanceModule.dll
+  UnityEngine.SubsystemsModule.dll
+  UnityEngine.TerrainModule.dll
+  UnityEngine.TerrainPhysicsModule.dll
+  UnityEngine.TextCoreFontEngineModule.dll
+  UnityEngine.TextCoreTextEngineModule.dll
+  UnityEngine.TextRenderingModule.dll
+  UnityEngine.TilemapModule.dll
+  UnityEngine.TLSModule.dll
+  UnityEngine.UI.dll
+  UnityEngine.UIElementsModule.dll
+  UnityEngine.UIModule.dll
+  UnityEngine.UmbraModule.dll
+  UnityEngine.UnityAnalyticsCommonModule.dll
+  UnityEngine.UnityAnalyticsModule.dll
+  UnityEngine.UnityConnectModule.dll
+  UnityEngine.UnityCurlModule.dll
+  UnityEngine.UnityTestProtocolModule.dll
+  UnityEngine.UnityWebRequestAssetBundleModule.dll
+  UnityEngine.UnityWebRequestAudioModule.dll
+  UnityEngine.UnityWebRequestModule.dll
+  UnityEngine.UnityWebRequestTextureModule.dll
+  UnityEngine.UnityWebRequestWWWModule.dll
+  UnityEngine.VehiclesModule.dll
+  UnityEngine.VFXModule.dll
+  UnityEngine.VideoModule.dll
+  UnityEngine.VirtualTexturingModule.dll
+  UnityEngine.VRModule.dll
+  UnityEngine.WindModule.dll
+  UnityEngine.XRModule.dll
+  __Generated.dll
+<NUGET>/
+ costura.fody/6.2.0/lib/netstandard2.0/Costura.dll
+ csv/2.0.245/lib/netstandard2.0/Csv.dll
+ newtonsoft.json/13.0.3/lib/net6.0/Newtonsoft.Json.dll
+
+[analyzerReferences]
+<NETSDK>/Sdks/Microsoft.NET.Sdk/analyzers/
+ Microsoft.CodeAnalysis.CSharp.NetAnalyzers.dll
+ Microsoft.CodeAnalysis.NetAnalyzers.dll
+<NUGET>/thisassembly.constants/2.1.2/analyzers/dotnet/roslyn4.0/cs/ThisAssembly.Constants.dll
+
+[sdkAnalyzerConfigPolicy]
+Microsoft.NET.Sdk/analyzers
+
+[analyzerConfigFiles]
+obj/Release/net6.0/TownOfHost.GeneratedMSBuildEditorConfig.editorconfig
+.editorconfig
+
+[additionalFiles]
+BaseTag
+BaseVersion.Major
+BaseVersion.Minor
+BaseVersion.Patch
+Branch
+Commit
+CommitDate
+Commits
+IsDirty
+IsDirtyString
+RepositoryUrl
+SemVer.DashLabel
+SemVer.Label
+SemVer.Major
+SemVer.Minor
+SemVer.Patch
+SemVer.Source
+Sha
+Tag
+
+[embeddedResources]
+Properties/Resources.resx
+ @Generator=ResXFileCodeGenerator
+ @LastGenOutput=Resources.Designer.cs
+Resources/
+ AmongUs/
+  Map_Airship.png
+  Map_Fungle.png
+  Map_MiraHQ.png
+  Map_Polus.png
+  Map_Skeld.png
+ Button/#U30ab#U30b9#U30bf#U30e0#U30dc#U30bf#U30f3#U7b49#U306b#U3064#U3044#U3066.md
+ TOHhm/
+  Button/
+   #U30a4#U30d3#U30eb#U30ea#U30f3#U30ab#U30fc.png
+   #U30a8#U30dc#U30eb#U30d0#U30fc#U30fb#U30a4#U30fc#U30bf#U30fc#U30fb#U30f4#U30a1#U30eb#U30c1#U30e3#U30fc.png
+   #U30ad#U30e5#U30fc#U30d4#U30c3#U30c9.png
+   #U30b8#U30a7#U30a4#U30e9#U30fc.png
+   #U30b9#U30a6#U30fc#U30d1#U30fc.png
+   #U30b9#U30bf#U30f3#U30c9#U30de#U30b9#U30bf#U30fc#Uff08#U30d5#U30a1#U30f3#U30c8#U30e0#Uff09.png
+   #U30b9#U30bf#U30f3#U30c9#U30de#U30b9#U30bf#U30fc(#U4f5c#U6210).png
+   #U30bf#U30a4#U30e0#U30ea#U30fc#U30d1#U30fc.png
+   #U30c0#U30d6#U30eb#U30ad#U30e9#U30fc.png
+   #U30c1#U30a7#U30a4#U30b5#U30fc.png
+   #U30c6#U30ec#U30dd#U30fc#U30bf#U30fc.png
+   #U30d0#U30c3#U30c8#U30ac#U30fc#U30eb#U81ea#U6c7a.png
+   #U30de#U30b9#U30de#U30fc#U30c0#U30fc.png
+   #U30de#U30c3#U30c9#U30b7#U30a7#U30ea#U30d5.png
+   #U30e0#U30fc#U30d3#U30f3#U30b0.png
+   #U6ce2#U52d5#U7832.png
+   #U7206#U305c#U5e2b.png
+   #U81ea#U6bba#U9858#U671b#U8005.png
+   #U8ce2#U8005.png
+   AntiReporter_Ability.png
+   Archer_Ability.png
+   Arsonist_Kill.png
+   Ballooner_Ability.png
+   Banker_Vent.png
+   BeginnerImpostor_Ability.png
+   BlackVisioner_Ability.png
+   Bomber_Ability.png
+   BountyHunter_Ability.png
+   CharismaStar_Ability.png
+   Chef_Kill.png
+   Comebacker_Ability.png
+   CurseMaker_Ability.png
+   CurseMaker_Kill.png
+   Curser_Ability.png
+   DoppelGanger_Ability.png
+   EarnestWolf_Ability.png
+   Eraser_Ability.png
+   EvilBlender_AbilityButton.png
+   EvilHacker_ability.png
+   EvilMoving_Ability.png
+   EvilStandMaster_Warp.png
+   EvilTracker_Ability.png
+   EvliTeller_Ability.png
+   FireWorks_Ability.png
+   Fortuner_Ability.png
+   Freeter_Job.png
+   Impostor_Side.png
+   Jailer_Ability.png
+   Jumper_Ability.png
+   Limiter_Kill.png
+   Lobby_Spotlight.png
+   MadChanger_Ability.png
+   MadChanger_Kill.png
+   MadSuicide_Ability.png
+   MadSuicide_Kill.png
+   Magician_Ability.png
+   MassMedia_Kill.png
+   Mayor_Ability.png
+   Milkman_Deliver.png
+   Mole_Vent.png
+   Monika_Erase.png
+   Moving_Vent.png
+   NiceLogger_Ability.png
+   Null_Phase.png
+   Onmyoji_Nominate.png
+   Pavlov_Imprint.png
+   Penguin_Ability.png
+   PhantomThief_Kill.png
+   Plague_Kill.png
+   ProBowler_Ability.png
+   Professional_SpecialKill.png
+   Puppeteer_Kill.png
+   QuickKiller_Ability.png
+   Raccoon_Carry.png
+   Raccoon_Grab.png
+   Raccoon_MakeChild.png
+   Reloader_Ability.png
+   Remotekiller_Kill.png
+   Remotekiller_Vent.png
+   Rocket_Grab.png
+   Rocket_Launch.png
+   Samurai_hissatu.png
+   SantaClaus_Ability.png
+   Santa_Gift.png
+   Serialkiller_Ability.png
+   Sheriff_Kill.png
+   SideKick.png
+   Sleeper_Sleep.png
+   Sleeper_Timer.png
+   Sniper_Ability.png
+   Stealth_ability.png
+   Strawdoll_Ability.png
+   Strawdoll_Kill.png
+   Surrogate_Kill.png
+   Surrogate_SK.png
+   TeleportKiller_Ability.png
+   ToiletFan_Ability.png
+   UnFortuner_Ability.png
+   Vampire_Kill.png
+   Vent.png
+   VentHunter_Ability.png
+   VentOpener_Ability.png
+   VillageChief_Appoint.png
+   Walkure_Kill.png
+   Warlock_Ability.png
+   Witch_Ability.png
+   WolfBoy_Kill.png
+  Label/
+   LabelBackground.png
+   LabelBackgroundTool.png
+   NewBadge.png
+  Tab/
+   TabIcon_Addons.png
+   TabIcon_Combinations.png
+   TabIcon_CrewmateRoles.png
+   TabIcon_Game.png
+   TabIcon_GameSettings.png
+   TabIcon_GhostRoles.png
+   TabIcon_ImpostorRoles.png
+   TabIcon_MadmateRoles.png
+   TabIcon_MainSettings.png
+   TabIcon_NeutralRoles.png
+   TabIcon_Other.png
+   TabIcon_Other2.png
+   TabIcon_S_Addons.png
+   TabIcon_S_Combinations.png
+   TabIcon_S_CrewmateRoles.png
+   TabIcon_S_Game.png
+   TabIcon_S_GameSettings.png
+   TabIcon_S_GhostRoles.png
+   TabIcon_S_ImpostorRoles.png
+   TabIcon_S_MadmateRoles.png
+   TabIcon_S_MainSettings.png
+   TabIcon_S_NeutralRoles.png
+   TabIcon_S_Other2.png
+   TabIco_S_Other.png
+  COPY-STG.png
+  LOAD-STG.png
+  pin.png
+  RESET-STG.png
+  ShowOption.png
+  SpawnMark.png
+ achievements.csv
+ string.csv
+ TOHhamoWatchdog.ps1
+ TownOfHost-hamo-logo.png
+ TownOfHost-hamo-logo2.png
+
+[projectReferences]
+
+[capabilities]
+Pack
+SupportsHotReload

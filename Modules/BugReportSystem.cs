@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using HarmonyLib;
 using TownOfHost;
 using TownOfHost.Attributes;
+using TownOfHost.Patches;
 
 namespace TownOfHost.Modules;
 
@@ -113,6 +114,19 @@ public static class BugReportSystem
     }
 
     public static TicketInfo GetTicket(string ticketId) => _data.Tickets.FirstOrDefault(t => t.TicketId == ticketId);
+
+    /// <summary>
+    /// Discord側でチケット(チャンネル)が削除されたことをポーリングで検知した際、
+    /// ゲーム側の一覧・保存データ・開いていれば専用チャットからもチケットを消す。
+    /// </summary>
+    private static void RemoveTicketLocally(string ticketId)
+    {
+        var removed = _data.Tickets.RemoveAll(t => t.TicketId == ticketId) > 0;
+        if (removed) Save();
+
+        // 今まさにこのチケットの専用チャットが開いていたら閉じる。
+        BugChatPanel.CloseIfShowing(ticketId);
+    }
 
     /// <summary>指定したチケットを開いたことにする(未読を消す)。チャットパネルを開いたときに呼ぶ。</summary>
     public static void MarkAsRead(string ticketId)
@@ -331,6 +345,15 @@ public static class BugReportSystem
                 request.Headers.Add("Authorization", $"Bearer {BugReportRemoteConfig.ApiKey}");
 
             using var response = await _httpClient.SendAsync(request).ConfigureAwait(false);
+
+            // Discord側でチケット(チャンネル)が削除されると、Bot側は404を返す。
+            // その場合はこちら側の一覧・専用チャットからもチケットを削除して同期させる。
+            if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                RemoveTicketLocally(ticket.TicketId);
+                return;
+            }
+
             if (!response.IsSuccessStatusCode) return;
 
             var json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);

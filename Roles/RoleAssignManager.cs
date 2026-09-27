@@ -163,11 +163,25 @@ namespace TownOfHost.Roles
             options = null;
             if (OptionAssignPerPlayerCount?.GetBool() != true) return false;
             if (GameData.Instance == null) return false;
-            var count = GameData.Instance.PlayerCount;
+            var count = GetAssignTargetPlayerCount();
             if (!PerCountOptionsCollection.TryGetValue(count, out var pc)) return false;
             if (pc.Enabled?.GetBool() != true) return false;
             options = pc;
             return true;
+        }
+
+        /// <summary>
+        /// アサインモードの「人数ごとの設定」の判定に使う人数を返す。
+        /// GMは実際に役職を割り振られるプレイヤーではないため、GM機能が有効な場合は
+        /// 接続人数から1人分減らしてから、人数ごとの設定(3人〜15人)と突き合わせる。
+        /// (例: 10人部屋+GM ON の場合、実際にアサインされるのは9人分なので、
+        ///  9人設定の枠を見るようにする)
+        /// </summary>
+        private static int GetAssignTargetPlayerCount()
+        {
+            var count = GameData.Instance?.PlayerCount ?? 0;
+            if (Options.EnableGM?.GetBool() == true) count -= 1;
+            return Math.Max(0, count);
         }
 
         private static int EffectiveMin(CustomRoleTypes roleTypes)
@@ -285,7 +299,9 @@ namespace TownOfHost.Roles
             var result = true;
             var opt = Main.NormalOptions.Cast<IGameOptions>();
 
-            var playerCount = GameData.Instance.PlayerCount;
+            // GM有効時はGM自身が役職アサインの対象にならないため、実際にアサインされる
+            // 人数(GM分を除いた人数)を基準に整合性チェックする。
+            var playerCount = GetAssignTargetPlayerCount();
             var numImpostors = Math.Min(playerCount, opt.GetInt(Int32OptionNames.NumImpostors));
 
             var min = EffectiveMin(CustomRoleTypes.Impostor);

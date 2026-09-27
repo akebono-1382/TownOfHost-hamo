@@ -160,6 +160,17 @@ public static class GMAutoPossessPatch
 
     static float logThrottle = 0f;
 
+    // ===== canInteract=false 長時間固着に対する救済 =====
+    // 「時々、いつまで経っても自動憑依されない」不具合の実体は、待機時間を過ぎても
+    // AbilityButton.canInteract が false のまま固まってしまうケースであることをログで確認した。
+    // (原因はバニラ側のボタン状態更新の取りこぼしと見られ、こちら側で確実な再現条件は
+    //  特定できていないため、症状側から強制的に復旧させる対処とする)
+    // 待機時間経過後、これだけ経ってもクリックできないままなら、クールダウンを
+    // 強制的に0にしてボタンを復帰させる。
+    const float StuckRecoverySeconds = 20f;
+    static float _stuckSince = -1f;
+
+
 
 
     public static void Postfix(PlayerControl __instance)
@@ -186,7 +197,11 @@ public static class GMAutoPossessPatch
 
         // 直近の会議終了から、マップに応じた待機時間が経過するまでは何もしない
 
-        if (!GMAutoPossessTiming.CanStartAutoPossess()) return;
+        if (!GMAutoPossessTiming.CanStartAutoPossess())
+        {
+            _stuckSince = -1f; // 待機時間内は固着カウントを始めない
+            return;
+        }
 
 
 
@@ -232,6 +247,8 @@ public static class GMAutoPossessPatch
 
             if (shouldLog) Logger.Info("GM自動憑依: AbilityButtonが非アクティブ(非表示)のためスキップ", "GMAutoPossess");
 
+            _stuckSince = -1f;
+
             return;
 
         }
@@ -240,11 +257,38 @@ public static class GMAutoPossessPatch
 
         {
 
+            // 待機時間はとっくに経過しているのに操作不能な状態が続いている場合、
+            // 一定時間で見切りをつけてクールダウンを強制的に解除する。
+            if (_stuckSince < 0f) _stuckSince = Time.realtimeSinceStartup;
+            var stuckFor = Time.realtimeSinceStartup - _stuckSince;
+            if (stuckFor >= StuckRecoverySeconds)
+            {
+                Logger.Info($"GM自動憑依: AbilityButtonのcanInteract=falseが{StuckRecoverySeconds}秒以上続いたため、クールダウンを強制解除します", "GMAutoPossess");
+                try
+                {
+                    // Timer/MaxCoolDownは直接アクセスできない(非公開または存在しない)ため、
+                    // 実際にボタン内で読まれている isCoolingDown フラグを直接falseにする。
+                    // (Patches/ActionButtonPatch.cs の AbilityButtonDoClickPatch でも
+                    //  この isCoolingDown が判定に使われていることを確認済み)
+                    hud.AbilityButton.isCoolingDown = false;
+                }
+                catch (System.Exception ex)
+                {
+                    Logger.Error($"GM自動憑依: クールダウン強制解除に失敗しました: {ex.Message}", "GMAutoPossess");
+                }
+                _stuckSince = -1f;
+                // 強制解除した直後の同フレームではまだcanInteractが反映されていない可能性があるため、
+                // 実際のクリックは次のFixedUpdateに委ねる(このフレームはここで終了)。
+                return;
+            }
+
             if (shouldLog) Logger.Info("GM自動憑依: AbilityButtonがcanInteract=falseのためスキップ", "GMAutoPossess");
 
             return;
 
         }
+
+        _stuckSince = -1f; // 正常に操作可能な状態に戻ったので固着カウントをリセット
 
 
 

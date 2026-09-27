@@ -170,7 +170,12 @@ namespace TownOfHost
 
                             farst = false;
 
-                            if ((!addoncheck && roleType == CustomRoleTypes.Crewmate && role.IsSubRole()) || (role.GetCustomRoleTypes() != roleType && role.GetCustomRoleTypes() != CustomRoleTypes.Impostor))
+                            // 役職種別(roleType)が切り替わったら見出しを更新する。
+                            // ただし「これから見る役職がImpostorで、既にImpostorセクション内にいる」場合だけは
+                            // 149行目のfarstロジックで既に見出しを出しているため、ここでは更新しない
+                            // (これが無いと、Impostor内で見出しが1行ごとに再描画されてしまう)。
+                            var isStillWithinImpostorSection = roleType == CustomRoleTypes.Impostor && role.GetCustomRoleTypes() == CustomRoleTypes.Impostor;
+                            if ((!addoncheck && roleType == CustomRoleTypes.Crewmate && role.IsSubRole()) || (role.GetCustomRoleTypes() != roleType && !isStillWithinImpostorSection))
 
                             {
 
@@ -201,6 +206,8 @@ namespace TownOfHost
                                     switch (role.GetCustomRoleTypes())
 
                                     {
+
+                                        case CustomRoleTypes.Impostor: count = -1; NowTabText = "☆Impostors☆"; rolecount = imp; color = Palette.ImpostorRed; break;
 
                                         case CustomRoleTypes.Crewmate: count = -1; NowTabText = "☆CrewMates☆"; rolecount = crew; color = ModColors.CrewMateBlue; break;
 

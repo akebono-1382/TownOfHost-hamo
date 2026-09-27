@@ -63,9 +63,16 @@ namespace TownOfHost.Roles.Crewmate
         }
         public override void CheckWinner(GameOverReason reason)
         {
-            Achievements.RpcCompleteAchievement(Player.PlayerId, 1, achievements[0], myaddtime);
-            Achievements.RpcCompleteAchievement(Player.PlayerId, 1, achievements[1], myaddtime);
-            Achievements.RpcCompleteAchievement(Player.PlayerId, 1, achievements[2], myaddtime);
+            // achievements が(何らかの理由で)未初期化、またはキーが無い場合に備えて
+            // TryGetValue で安全にアクセスする。ここで例外が起きると CheckEndCriteria 自体が
+            // 異常終了し、タスク勝ち判定やボタン操作にまで影響が波及するため、
+            // 存在しない場合は静かにスキップする。
+            if (achievements.TryGetValue(0, out var a0))
+                Achievements.RpcCompleteAchievement(Player.PlayerId, 1, a0, myaddtime);
+            if (achievements.TryGetValue(1, out var a1))
+                Achievements.RpcCompleteAchievement(Player.PlayerId, 1, a1, myaddtime);
+            if (achievements.TryGetValue(2, out var a2))
+                Achievements.RpcCompleteAchievement(Player.PlayerId, 1, a2, myaddtime);
         }
         public static System.Collections.Generic.Dictionary<int, Achievement> achievements = new();
         [Attributes.PluginModuleInitializer]

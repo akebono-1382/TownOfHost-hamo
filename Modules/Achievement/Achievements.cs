@@ -25,6 +25,10 @@ class Achievements
     }
     public static void RpcCompleteAchievement(byte playerid, int flug, Achievement achievement, int addstate = 1)
     {
+        // achievement が null(未登録IDなどで取得できなかった)の場合は何もせず安全に抜ける。
+        // ここでnullチェックを一元化しておくことで、各所の achievements[id] 参照が
+        // 万が一失敗しても、ゲーム終了処理などを巻き込んで落ちることがなくなる。
+        if (achievement is null) return;
         try
         {
             if (flug == 0)

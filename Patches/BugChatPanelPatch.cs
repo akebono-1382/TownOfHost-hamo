@@ -29,14 +29,24 @@ namespace TownOfHost.Patches
         private static TextMeshPro _typingIndicatorText;
         private static SimpleTextBox _inputBox;
         private static SimpleButton _sendButton;
-        private static SimpleButton _backButton;
         private static SimpleButton _reloadButton;
+        private static SimpleButton _scrollUpButton;
+        private static SimpleButton _scrollDownButton;
 
         private static float _pollTimer = 0f;
         private const float PollIntervalSeconds = 12f; // 要望により短め(10〜15秒)のポーリング間隔
 
+        // ===== スクロール =====
+        // 直近10件だけを表示する方式だと、メッセージが増えると古い分が見えなくなっていた。
+        // 全メッセージを保持しつつ、1ページに表示する件数を決めてスクロールオフセットで
+        // 表示範囲をずらせるようにする(▲/▼ボタンでページ送り)。
+        private const int MessagesPerPage = 8;
+        private static int _scrollOffset = 0; // 0 = 最新側。値が大きいほど過去に遡る。
+
         // パネルの大きさ。画面中央に表示するようになったため、以前より少し大きくして見やすくした。
-        private static readonly Vector2 PanelSize = new(5.0f, 4.6f);
+        // バグ報告一覧パネルと同じサイズにし、背後のロビーUI(ホスト名・開始ボタン等)を
+        // 完全に覆い隠せるようにしている(以前は少し小さく、下端がはみ出て見えていた)。
+        private static readonly Vector2 PanelSize = new(5.0f, 5.0f);
 
         public static void Open(Transform parent, string ticketId)
         {
@@ -60,6 +70,7 @@ namespace TownOfHost.Patches
             BugReportSystem.MarkAsRead(ticketId); // 開いたら未読バッジを消す
 
             _isOpen = true;
+            _scrollOffset = 0; // 開いた時は常に最新メッセージが見える状態にする
             _panelRoot.SetActive(true);
             SetTypingIndicator(false);
             RefreshHistory();
@@ -122,21 +133,42 @@ namespace TownOfHost.Patches
                 _historyText.text = "<color=#aaaaaa>このチケットは見つかりませんでした。</color>";
                 _inputBox?.SetActive(false);
                 _sendButton?.Button.gameObject.SetActive(false);
+                UpdateScrollButtonsInteractable(0, 0);
                 return;
             }
 
             _inputBox?.SetActive(true);
             _sendButton?.Button.gameObject.SetActive(true);
 
+            var all = ticket.Messages;
+            var totalCount = all.Count;
+
+            // _scrollOffset(0=最新)から MessagesPerPage 件分を切り出す。
+            // 範囲外にならないようクランプしておく。
+            var maxOffset = Math.Max(0, totalCount - MessagesPerPage);
+            if (_scrollOffset > maxOffset) _scrollOffset = maxOffset;
+            if (_scrollOffset < 0) _scrollOffset = 0;
+
+            var skipFromEnd = _scrollOffset;
+            var takeCount = Math.Min(MessagesPerPage, totalCount - skipFromEnd);
+            var startIndex = Math.Max(0, totalCount - skipFromEnd - takeCount);
+            var page = takeCount > 0 ? all.Skip(startIndex).Take(takeCount).ToList() : new System.Collections.Generic.List<BugReportSystem.TicketMessage>();
+
             var sb = new StringBuilder();
-            var recent = ticket.Messages.TakeLast(10).ToList();
-            if (recent.Count == 0)
+
+            if (totalCount == 0)
             {
                 sb.Append("<color=#aaaaaa>まだメッセージはありません。</color>");
             }
             else
             {
-                foreach (var msg in recent)
+                // 過去にまだ隠れているメッセージがあることが分かるようにヒントを出す。
+                if (startIndex > 0)
+                {
+                    sb.Append("<align=center><color=#777777>▲ 上にまだ古いメッセージがあります ▲</color></align>\n\n");
+                }
+
+                foreach (var msg in page)
                 {
                     // 修正完了などのシステムメッセージは、専用チャット内では短く表示する。
                     if (msg.Resolved)
@@ -156,8 +188,52 @@ namespace TownOfHost.Patches
                         sb.Append($"<align=right><color=#8cffff>{msg.Author}</color>\n{msg.Text}</align>\n\n");
                     }
                 }
+
+                if (skipFromEnd > 0)
+                {
+                    sb.Append("<align=center><color=#777777>▼ 下に新しいメッセージがあります ▼</color></align>\n");
+                }
             }
             _historyText.text = sb.ToString();
+
+            UpdateScrollButtonsInteractable(_scrollOffset, maxOffset);
+        }
+
+        /// <summary>▲(古い方へ)/▼(新しい方へ)ボタンの見た目を、これ以上動かせない端では薄く表示する。</summary>
+        private static void UpdateScrollButtonsInteractable(int offset, int maxOffset)
+        {
+            if (_scrollUpButton != null)
+            {
+                var canScrollUp = offset < maxOffset;
+                SetButtonEnabled(_scrollUpButton, canScrollUp);
+            }
+            if (_scrollDownButton != null)
+            {
+                var canScrollDown = offset > 0;
+                SetButtonEnabled(_scrollDownButton, canScrollDown);
+            }
+        }
+
+        private static void SetButtonEnabled(SimpleButton button, bool enabled)
+        {
+            button.Button.enabled = enabled;
+            var color = button.NormalSprite.color;
+            color.a = enabled ? 1f : 0.35f;
+            button.NormalSprite.color = color;
+        }
+
+        /// <summary>▲ボタン: より古いメッセージへスクロールする。</summary>
+        private static void ScrollOlder()
+        {
+            _scrollOffset += MessagesPerPage;
+            RefreshHistory();
+        }
+
+        /// <summary>▼ボタン: より新しいメッセージへスクロールする。</summary>
+        private static void ScrollNewer()
+        {
+            _scrollOffset = Math.Max(0, _scrollOffset - MessagesPerPage);
+            RefreshHistory();
         }
 
         private static bool EnsurePanel(Transform parent)
@@ -233,16 +309,41 @@ namespace TownOfHost.Patches
                     setActive: true,
                     parent: _panelRoot.transform);
                 // 上端(タイトル下)〜下端(入力欄上)の範囲に収まるよう高さを調整。
-                SetTmpPosition(_historyText, new Vector3(0f, 0.6f, -1f), new Vector2(4.5f, 2.5f));
+                // 右側に▲/▼スクロールボタンを置くため、少し幅を狭めている。
+                SetTmpPosition(_historyText, new Vector3(-0.25f, 0.55f, -1f), new Vector2(4.1f, 2.9f));
                 _historyText.enableWordWrapping = true; // 要望により、長いメッセージは自動で折り返す
                 _historyText.overflowMode = TextOverflowModes.Truncate;
                 _historyText.lineSpacing = 4f; // 行間を少し広げて見やすくする
                 SetSortingOrder(_historyText, 961);
 
+                // ===== 履歴スクロールボタン(▲古い方へ / ▼新しい方へ) =====
+                // 要望により、メッセージ数が増えても過去の履歴を遡って見られるようにする。
+                _scrollUpButton = new SimpleButton(
+                    parent: _panelRoot.transform,
+                    name: "BugChatScrollUpButton",
+                    localPosition: new Vector3(2.15f, 1.35f, -1f),
+                    normalColor: new Color32(70, 70, 70, 230),
+                    hoverColor: new Color32(100, 100, 100, 230),
+                    action: () => ScrollOlder(),
+                    label: "▲");
+                _scrollUpButton.Scale = new Vector2(0.4f, 0.35f);
+                _scrollUpButton.FontSize = 1.2f;
+
+                _scrollDownButton = new SimpleButton(
+                    parent: _panelRoot.transform,
+                    name: "BugChatScrollDownButton",
+                    localPosition: new Vector3(2.15f, 0.9f, -1f),
+                    normalColor: new Color32(70, 70, 70, 230),
+                    hoverColor: new Color32(100, 100, 100, 230),
+                    action: () => ScrollNewer(),
+                    label: "▼");
+                _scrollDownButton.Scale = new Vector2(0.4f, 0.35f);
+                _scrollDownButton.FontSize = 1.2f;
+
                 _inputBox = new SimpleTextBox(
                     parent: _panelRoot.transform,
                     name: "BugChatInputBox",
-                    localPosition: new Vector3(-2.25f, -1.9f, -1f),
+                    localPosition: new Vector3(-2.25f, -2.2f, -1f),
                     width: 3.1f,
                     height: 0.7f,
                     characterLimit: 200,
@@ -255,24 +356,13 @@ namespace TownOfHost.Patches
                 _sendButton = new SimpleButton(
                     parent: _panelRoot.transform,
                     name: "BugChatSendButton",
-                    localPosition: new Vector3(1.7f, -1.9f, -1f),
+                    localPosition: new Vector3(1.7f, -2.2f, -1f),
                     normalColor: new Color32(60, 150, 60, 230),
                     hoverColor: new Color32(80, 180, 80, 230),
                     action: () => SendCurrentInput(),
                     label: "送信");
                 _sendButton.Scale = new Vector2(1.1f, 0.45f);
                 _sendButton.FontSize = 1.3f;
-
-                _backButton = new SimpleButton(
-                    parent: _panelRoot.transform,
-                    name: "BugChatBackButton",
-                    localPosition: new Vector3(-1.9f, -2.2f, -1f),
-                    normalColor: new Color32(60, 60, 60, 230),
-                    hoverColor: new Color32(90, 90, 90, 230),
-                    action: () => Close(),
-                    label: "戻る");
-                _backButton.Scale = new Vector2(1.4f, 0.32f);
-                _backButton.FontSize = 1.15f;
 
                 _panelRoot.SetActive(false);
                 return true;

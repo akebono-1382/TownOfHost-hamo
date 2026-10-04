@@ -15,7 +15,7 @@ using static TownOfHost.Modules.SelfVoteManager;
 namespace TownOfHost.Roles.Impostor;
 
 /// コードがクッソ長い!!スパゲッティかよ!!まぁ処理が複雑な役職だからね。仕方ない。
-//
+//a
 // メモ
 // 追加したいなぁって思ってるの
 // マジシャン(キルボタンぜんぶ吹っ飛ばす...流石に強い気がする)

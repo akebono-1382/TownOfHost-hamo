@@ -220,7 +220,7 @@ public sealed class TeleportKiller : RoleBase, IImpostor
             {
                 if (!target.inVent && !target.MyPhysics.Animations.IsPlayingEnterVentAnimation())
                 {
-                    if (target.GetCustomRole().IsImpostor()) return;
+                    if (target.GetCustomRole().IsImpostor() && !SuddenDeathMode.NowSuddenDeathMode) return;
                     if (CustomRoleManager.OnCheckMurder(Player, target, target, target, true, false, deathReason: DeathReason ? CustomDeathReason.TeleportKill : CustomDeathReason.Kill))
                     {
                         var state = PlayerState.GetByPlayerId(target.PlayerId);
